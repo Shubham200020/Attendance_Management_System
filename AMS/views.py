@@ -74,4 +74,30 @@ def courseApi(request,id):
     elif request.method=='DELETE':
         course.delete()
         return Response(status=status.HTTP_200_OK)
-          
+
+@api_view(['POST','GET'])
+def Classes(response):
+    serilize=ClassScedule(date=response.date)
+    if response.method=='POST':
+        if serilize.is_valid():
+            serilize.save()
+            return Response(serilize.date,status=status.HTTP_201_CREATED)
+        else:
+            return Response(serilize.errors,status=status.HTTP_400_BAD_REQUEST)
+    elif response.method=='GET':
+        classes=ClassScedule.objects.all()
+        serilize=ClassScedule(classes,many=True)
+        return Response(serilize.date,status=status.HTTP_200_OK)
+@api_view(['PUT','DELETE','GET'])
+def classApi(request,id):
+    try:
+        classes=ClassScedule.objects.get(id=id)
+    except:
+        return Response(status=status.HTTP_451_UNAVAILABLE_FOR_LEGAL_REASONS)
+    
+    if request.method=='PUT':
+        serilize=ClassScedule(instance=classes,data=request.data)
+        if serilize.is_valid():
+            serilize.save()
+            return Response(serilize.date,status=status.HTTP_202_ACCEPTED)
+       # return Response

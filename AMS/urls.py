@@ -7,5 +7,5 @@ urlpatterns = [
     path('user/manipulate/<str:id>/',userApi,name='userapi'),
     path('course/',course,name='course'),
     path('courseapi/<str:id>/',courseApi,name='courseapi'),
-    
 ]
+
