@@ -11,6 +11,7 @@ class USERS(models.Model):
         Female='Female','FEMALE'
         Others='Others','OTHERS'
     id=models.AutoField(primary_key=True)
+    #totalAtten=models.IntegerField()
     name=models.CharField(max_length=50)
     Gender=models.CharField(max_length=10,choices=Gender.choices)
     role=models.CharField(max_length=50,choices=Role.choices)
@@ -22,7 +23,7 @@ class Course(models.Model):
     code=models.CharField(max_length=10,unique=True)
     def __str__(self):
         return self.name
-    
+
 class ClassScedule(models.Model):
     course=models.ForeignKey(Course,on_delete=models.CASCADE)
     teacher=models.ForeignKey(USERS,on_delete=models.CASCADE,limit_choices_to={
