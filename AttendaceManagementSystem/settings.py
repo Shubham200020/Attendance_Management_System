@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    
     'AMS',
     'rest_framework',
-    'api'
+    
 ]
 
 MIDDLEWARE = [
@@ -61,11 +62,8 @@ REST_FRAMEWORK = {
 }
 # Whitelist of origins that are allowed to make cross-site HTTP requests.
 CORS_ALLOWED_ORIGINS = [
-    
-    "http://localhost:3000",  # Your React development server
-    "http://localhost:8080",  # Your Vue development server
-    "http://127.0.0.1:5500",
-    # Common for VS Code Live Server
+    "http://localhost:5173",  # Your Vite React app's URL
+    "http://127.0.0.1:5173",
 ]
 ROOT_URLCONF = 'AttendaceManagementSystem.urls'
 

@@ -10,6 +10,7 @@ urlpatterns = [
     path('classes/',Classes,name='classes'),
     path('classesApi/<str:id>/',classApi,name='classapi'),
     path('attendance',attendance,name='attendance'),
+    path('login',login,name='login'),
     
     
 ]

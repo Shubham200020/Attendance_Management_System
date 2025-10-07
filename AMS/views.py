@@ -82,12 +82,8 @@ def Classes(request):
         serializer = ClassSceduleSerializer(classes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'POST':
-      
-        serializer = ClassSceduleSerializer(data=request.data)
-        
-      
-        if serializer.is_valid():
-         
+        serializer = ClassSceduleSerializer(data=request.data)  
+        if serializer.is_valid():        
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -124,3 +120,18 @@ def attendance(request):
         serilize=AttendanceSerializer(attendance,many=True)
         return Response(serilize.data,status=status.HTTP_200_OK)
     
+@api_view(['POST'])
+def login(request):
+    email=request.data.get('email')
+    password=request.data.get('password')
+    try:
+        data=USERS.objects.get(email=email)
+       
+        if data.password==password:
+            serialize=UserSerilizer(data)
+            return Response(serialize.data,status=status.HTTP_200_OK)
+        return Response({'error':'invailed password'})
+        
+
+    except(Exception):
+        return Response({'error':'Invailid email'})
